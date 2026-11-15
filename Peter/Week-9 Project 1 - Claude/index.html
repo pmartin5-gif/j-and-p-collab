@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#EEEBE4">
+    <title>borkilator</title>
+    <meta name="description" content="Distort an image in repeatable passes. Compare, undo, save and export the result.">
+    <link rel="icon" href="data:,">
+    <link rel="preload" href="assets/fonts/archivo-variable.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="assets/fonts/special-gothic-expanded-one.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="engine.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#controls">Skip to effects</a>
+
+    <header class="masthead">
+      <h1 class="wordmark">borkilator</h1>
+      <nav class="file-actions" aria-label="File">
+        <label class="text-button file-label">Open session<input id="load-recipe" type="file" accept="application/json,.json"></label>
+        <button class="text-button" id="save-recipe" disabled>Save session</button>
+        <button class="button" id="export" disabled>Export PNG</button>
+      </nav>
+    </header>
+
+    <main class="workbench">
+      <section class="studio" aria-labelledby="study-title">
+        <div class="studio-bar">
+          <div class="study-name">
+            <h2 id="study-title">No image</h2>
+            <span id="state-chip" class="state-chip"></span>
+          </div>
+          <div class="view-tools">
+            <div class="segmented" role="group" aria-label="Compare">
+              <button id="view-current" class="active" aria-pressed="true" disabled>Result</button>
+              <button id="view-original" aria-pressed="false" disabled>Original</button>
+            </div>
+            <button id="undo" class="text-button" disabled title="⌘/Ctrl Z">Undo</button>
+            <button id="redo" class="text-button" disabled title="⌘/Ctrl Shift Z">Redo</button>
+            <button id="zoom" class="text-button" disabled aria-pressed="false">Fit</button>
+          </div>
+        </div>
+
+        <div class="viewport" id="viewport" aria-busy="false">
+          <div class="image-wrap" id="image-wrap">
+            <canvas id="artwork" width="3840" height="2160" aria-label="Image preview" hidden></canvas>
+            <button type="button" class="empty-state" id="empty">
+              <span class="empty-title">Choose an <em>image</em></span>
+              <span class="empty-note">PNG, JPEG or WebP, up to 100 MiB. Processed on your device.</span>
+            </button>
+          </div>
+          <div class="render-overlay" id="render-overlay" hidden>
+            <div class="render-card">
+              <p id="render-label">Applying pass</p>
+              <progress id="render-progress" max="1" value="0" aria-label="Progress"></progress>
+              <span id="render-percent">0%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="image-caption">
+          <span id="image-details"></span>
+          <span id="image-state" class="sr-only"></span>
+          <label class="text-button file-label">Choose image<input id="upload-image" type="file" accept="image/png,image/jpeg,image/webp,.png,.jpg,.jpeg,.webp"></label>
+        </div>
+        <p class="message" id="message" role="status" aria-live="polite" aria-atomic="true"></p>
+
+        <section class="history" aria-labelledby="history-title">
+          <h2 id="history-title" class="section-title">History <span id="history-count">0</span></h2>
+          <div id="history-list" class="history-list">
+            <p class="history-empty">Each pass you apply is kept here. Select one to continue from it.</p>
+          </div>
+          <p class="fine-print">History lasts until you close this tab. Save the session to keep it.</p>
+        </section>
+      </section>
+
+      <aside class="controls" id="controls" tabindex="-1" aria-labelledby="controls-title">
+        <section id="signal-panel">
+          <h2 id="controls-title" class="section-title">Effects</h2>
+
+          <div class="presets" role="group" aria-label="Presets">
+            <button data-preset="dragged" title="Stretch and sort">Stretch</button>
+            <button data-preset="fractured" title="Shift bands and break into fragments">Fragment</button>
+            <button data-preset="encoded" title="Patterns and reduced tones">Encode</button>
+            <button data-preset="clear" title="Set every effect to 0. The image doesn’t change.">Reset</button>
+          </div>
+
+          <div class="slider-group" id="signal-sliders"></div>
+
+          <div class="slider-group shape-group" id="signal-shape-sliders"></div>
+
+          <div class="seed-field">
+            <label for="signal-seed">Seed</label>
+            <div class="input-row">
+              <input id="signal-seed" type="number" min="0" max="4294967295" step="1" value="7183" aria-describedby="seed-desc">
+              <button class="text-button" id="new-pattern" aria-label="New random seed">New</button>
+            </div>
+            <p class="slider-desc" id="seed-desc">The same seed gives the same pattern.</p>
+          </div>
+
+          <div class="apply-block">
+            <button class="button apply-button" id="apply" disabled>Apply pass</button>
+            <p class="pending-note" id="signal-pending" role="status" aria-live="polite">Ready to apply.</p>
+          </div>
+        </section>
+      </aside>
+    </main>
+
+    <dialog id="resize-dialog" aria-labelledby="resize-title" aria-describedby="resize-description">
+      <form method="dialog">
+        <h2 id="resize-title">Use a smaller copy?</h2>
+        <p id="resize-description"></p>
+        <p class="fine-print">The limit is 8192 px per side and 16,777,216 px in total.</p>
+        <div class="dialog-actions">
+          <button value="cancel" class="text-button">Cancel</button>
+          <button value="resize" class="button">Use smaller copy</button>
+        </div>
+      </form>
+    </dialog>
+  </body>
+</html>

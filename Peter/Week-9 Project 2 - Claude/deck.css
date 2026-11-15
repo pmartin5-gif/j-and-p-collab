@@ -1,0 +1,415 @@
+/*
+ * Farmers Markets deck
+ * Tokens from Figma "01 / Foundations" (node 33:78); rules from j-and-p-collab/brief.md.
+ * Slides are laid out on a 1920 × 1080 canvas and scaled to fit the window.
+ */
+
+@font-face {
+  font-family: "Archivo";
+  src: url("fonts/archivo-variable.ttf") format("truetype");
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Special Gothic Expanded One";
+  src: url("fonts/special-gothic-expanded-one.ttf") format("truetype");
+  font-display: swap;
+}
+
+:root {
+  --paper: #EEEBE4;
+  --ink: #1B1B1B;
+  --line: #C9C9C9;
+  --decoration: #F62DAE;      /* 3.2:1 on paper: display sizes only */
+  --accent-display: #B30089;  /* 5.4:1 on paper: any size */
+  --soft: #470063;
+  --ink-muted: #55524C;       /* added for secondary text, 6.9:1 */
+
+  --font-text: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Special Gothic Expanded One", "Archivo", "Helvetica Neue", Arial, sans-serif;
+
+  --margin: 128px;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, p, ul, dl, dd, blockquote, figure { margin: 0; padding: 0; }
+
+em { font-style: normal; color: var(--decoration); }
+
+:focus-visible { outline: 3px solid var(--accent-display); outline-offset: 3px; }
+
+/* ---------- Viewer ---------- */
+
+.viewer {
+  position: fixed;
+  inset: 0 0 56px 0;
+  overflow: hidden;
+}
+
+.stage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1920px;
+  height: 1080px;
+  transform-origin: 0 0;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  padding: 120px var(--margin) 112px;
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  font-size: 34px;
+  line-height: 50px;
+}
+
+.slide:not(.is-active) { visibility: hidden; }
+
+.controls {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  border-top: 1px solid var(--line);
+  background: var(--paper);
+  font-size: 15px;
+}
+
+.controls button {
+  width: 44px;
+  height: 40px;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.controls button:disabled { color: var(--line); cursor: default; }
+
+#counter {
+  min-width: 64px;
+  text-align: center;
+  color: var(--ink-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Type ---------- */
+
+.display-xl {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 168px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.display-l {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 104px;
+  line-height: 1.05;
+  white-space: nowrap;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 72px;
+  line-height: 1.1;
+  white-space: nowrap;
+  margin-bottom: 88px;
+}
+
+.kicker {
+  font-size: 26px;
+  line-height: 32px;
+  font-weight: 600;
+  color: var(--ink-muted);
+  margin-bottom: 16px;
+}
+
+h3 {
+  font-size: 38px;
+  line-height: 48px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.h-large {
+  font-size: 52px;
+  line-height: 60px;
+  font-weight: 700;
+  white-space: nowrap;
+  margin-bottom: 32px;
+}
+
+.num {
+  font-size: 22px;
+  line-height: 28px;
+  font-weight: 600;
+  color: var(--ink-muted);
+  padding-bottom: 20px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+.col p + p { margin-top: 12px; }
+
+.lead { font-size: 40px; line-height: 56px; }
+
+ul { list-style: none; }
+
+ul:not(.notes):not(.dash) li {
+  position: relative;
+  padding-left: 32px;
+}
+
+ul:not(.notes):not(.dash) li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 20px;
+  width: 12px;
+  height: 2px;
+  background: var(--ink);
+}
+
+li + li { margin-top: 20px; }
+
+.dash li { padding-left: 32px; position: relative; margin-top: 4px; }
+.dash li::before { content: "–"; position: absolute; left: 0; }
+
+/* ---------- Columns ---------- */
+
+.cols {
+  display: grid;
+  gap: 64px;
+  margin-top: auto;
+  align-content: end;
+}
+
+.cols-2 { grid-template-columns: repeat(2, 1fr); gap: 128px; }
+.cols-3 { grid-template-columns: repeat(3, 1fr); gap: 80px; }
+.cols-3 { font-size: 32px; line-height: 46px; }
+.cols-4 { grid-template-columns: repeat(4, 1fr); }
+.cols-5 { grid-template-columns: repeat(5, 1fr); gap: 48px; }
+.cols-5 { font-size: 30px; line-height: 44px; }
+.cols-5 h3 { font-size: 32px; line-height: 42px; }
+
+/* ---------- Title slide ---------- */
+
+.slide-title {
+  justify-content: center;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.slide-title .subtitle {
+  margin-top: 40px;
+  font-size: 56px;
+  line-height: 64px;
+  font-weight: 500;
+}
+
+.slide-title .authors {
+  display: flex;
+  gap: 48px;
+  margin-top: 120px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+  width: 100%;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+/* ---------- Personas ---------- */
+
+.persona-name { font-size: 40px; line-height: 48px; margin-bottom: 40px; }
+
+.personas .q {
+  font-weight: 700;
+  margin-top: 32px;
+}
+
+.personas .q:first-of-type { margin-top: 0; }
+
+.personas .q + p { margin-top: 4px; }
+
+.persona blockquote {
+  margin-top: 48px;
+  max-width: 1440px;
+  font-size: 44px;
+  line-height: 60px;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.persona-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 128px;
+  margin-top: auto;
+  padding-top: 48px;
+  border-top: 1px solid var(--line);
+}
+
+.paras p + p { margin-top: 20px; }
+
+.job-story {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0 32px;
+  align-content: start;
+}
+
+.job-story dt {
+  font-weight: 700;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.job-story dd {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--accent-display);
+  font-weight: 500;
+}
+
+.job-story dt:first-of-type,
+.job-story dt:first-of-type + dd { padding-top: 0; }
+
+/* ---------- Split slides ---------- */
+
+.split {
+  display: grid;
+  grid-template-columns: 640px 1fr;
+  gap: 96px;
+  align-items: start;
+}
+
+.split-text .title { margin-bottom: 48px; font-size: 60px; }
+.split-text p + p, .split-text p + ul, .split-text ul + p { margin-top: 24px; }
+.split-text { font-size: 30px; line-height: 44px; }
+
+/* Decision path */
+.fork {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  height: 100%;
+  border-top: 2px solid var(--ink);
+}
+
+.fork-side { padding: 28px 40px 0 0; }
+.fork-side + .fork-side { padding: 28px 0 0 40px; border-left: 1px solid var(--line); }
+
+.fork-head {
+  font-family: var(--font-display);
+  font-size: 40px;
+  line-height: 48px;
+  margin-bottom: 24px;
+}
+
+.fork-group {
+  font-size: 22px;
+  line-height: 28px;
+  font-weight: 700;
+  margin: 24px 0 8px;
+}
+
+.fork-group:first-of-type { margin-top: 0; }
+
+.notes { font-size: 24px; line-height: 32px; }
+.notes li { padding: 10px 0; border-bottom: 1px solid var(--line); margin: 0; }
+
+/* Quadrant matrix */
+.matrix { display: flex; flex-direction: column; gap: 16px; }
+.matrix svg { width: 100%; height: auto; display: block; }
+.matrix .axes line { stroke: var(--ink); stroke-width: 3; }
+.matrix .axis-labels text { font-family: var(--font-text); font-size: 40px; fill: var(--ink); }
+.matrix .n rect { stroke: var(--paper); stroke-width: 6; }
+.matrix .both rect { fill: var(--line); }
+.matrix .market rect { fill: var(--decoration); }
+.matrix .super rect { fill: var(--ink); }
+.matrix .cluster { fill: none; stroke: var(--ink); stroke-width: 3; stroke-dasharray: 12 10; }
+
+.legend { display: flex; gap: 40px; font-size: 22px; line-height: 28px; }
+.legend span { display: inline-flex; align-items: center; gap: 12px; }
+.sw { display: inline-block; width: 20px; height: 20px; }
+.sw.market { background: var(--decoration); }
+.sw.both { background: var(--line); }
+.sw.super { background: var(--ink); }
+
+/* ---------- Recommendations ---------- */
+
+.recs .col {
+  padding-top: 40px;
+  border-top: 2px solid var(--ink);
+  font-size: 36px;
+  line-height: 50px;
+}
+
+.icon {
+  width: 96px;
+  height: 96px;
+  margin-bottom: 40px;
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---------- Disclosure ---------- */
+
+.disclosure { margin-top: auto; }
+
+.disclosure div {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  align-items: baseline;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 40px;
+  line-height: 52px;
+}
+
+.disclosure div:first-child { border-top: 1px solid var(--line); }
+.disclosure dt { font-weight: 400; }
+.disclosure dd { font-weight: 600; text-align: right; }
+
+/* ---------- Print: one slide per page ---------- */
+
+@page { size: 1920px 1080px; margin: 0; }
+
+@media print {
+  .controls { display: none; }
+  .viewer { position: static; overflow: visible; }
+  .stage { position: static; transform: none !important; width: auto; height: auto; }
+  .slide { position: relative; width: 1920px; height: 1080px; visibility: visible !important; break-after: page; }
+}

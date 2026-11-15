@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#FAF9F5">
+    <title>borkilator — Image distortion</title>
+    <meta name="description" content="Distort an image in deliberate passes. Compare, undo, and save the result.">
+    <link rel="icon" href="data:,">
+    <link rel="preload" href="assets/fonts/archivo-variable.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="assets/fonts/special-gothic-expanded-one.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="engine.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#workspace">Skip to image</a>
+    <header class="masthead">
+      <div class="identity">
+        <h1>borkilator<span aria-hidden="true">.</span></h1>
+        <p>Image distortion, one pass at a time.</p>
+      </div>
+      <nav class="file-actions" aria-label="Save and open work">
+        <label class="button file-label">Open session<input id="load-recipe" type="file" accept="application/json,.json" aria-label="Open a saved session"></label>
+        <button class="button" id="save-recipe" disabled>Save session</button>
+        <button class="button button-dark" id="export" disabled>Export PNG <span aria-hidden="true">↓</span></button>
+      </nav>
+    </header>
+
+    <main class="workbench" id="workspace" tabindex="-1">
+      <section class="studio" aria-label="Image workspace">
+        <div class="image-heading">
+          <h2 id="study-title">Your image</h2>
+          <label class="text-button file-label">Choose image <span aria-hidden="true">↗</span><input id="upload-image" type="file" accept="image/png,image/jpeg,image/webp,.png,.jpg,.jpeg,.webp" aria-label="Choose an image"></label>
+        </div>
+        <div class="viewer-toolbar">
+          <div class="view-switch" role="group" aria-label="Compare images">
+            <button id="view-current" class="active" aria-pressed="true" disabled>Result</button>
+            <button id="view-original" aria-pressed="false" disabled>Original</button>
+          </div>
+          <div class="viewer-tools">
+            <button id="undo" class="text-button" disabled title="Undo (⌘/Ctrl Z)">Undo</button>
+            <button id="redo" class="text-button" disabled title="Redo (⌘/Ctrl Shift Z)">Redo</button>
+            <button id="zoom" class="text-button zoom-button" disabled aria-pressed="false" title="Toggle between fitting the image and actual pixels">Fit image <span aria-hidden="true">↗</span></button>
+          </div>
+        </div>
+
+        <div class="viewport" id="viewport" aria-busy="false">
+          <div class="image-wrap" id="image-wrap">
+            <canvas id="artwork" width="3840" height="2160" aria-label="Image preview" hidden></canvas>
+            <button type="button" class="empty-state" id="empty" aria-label="Choose an image">
+              <span class="empty-title">Start with an image.</span>
+              <span class="empty-action">Choose image <span aria-hidden="true">↗</span></span>
+              <small>PNG, JPEG or WebP · up to 100 MiB</small>
+            </button>
+          </div>
+          <div class="render-overlay" id="render-overlay" hidden>
+            <div class="render-card">
+              <p id="render-label">Processing image</p>
+              <progress id="render-progress" max="1" value="0" aria-label="Processing progress"></progress>
+              <span id="render-percent">0%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="image-caption">
+          <span id="image-details">Original size and transparency preserved</span>
+          <span id="state-chip">No image</span>
+          <span id="image-state" class="sr-only">Ready to choose an image</span>
+        </div>
+        <p class="message" id="message" role="status" aria-live="polite" aria-atomic="true"></p>
+
+        <section class="history" aria-labelledby="history-title">
+          <div class="history-heading">
+            <h2 id="history-title">History <span id="history-count">0</span></h2>
+            <p>Choose a state to continue from there.</p>
+          </div>
+          <div id="history-list" class="history-list" tabindex="0" aria-label="Image history">
+            <p class="history-empty">Your original and each applied pass will appear here.</p>
+          </div>
+          <p class="session-note">Save your session before closing this tab.</p>
+        </section>
+      </section>
+
+      <aside class="controls" aria-labelledby="controls-title">
+        <section id="signal-panel" aria-label="Distortion controls">
+          <div class="panel-intro">
+            <h2 id="controls-title">Distortion</h2>
+            <p>Adjust the controls, then apply a pass.</p>
+          </div>
+
+          <div class="preset-section">
+            <div class="presets" role="group" aria-label="Prepared combinations">
+              <button data-preset="dragged" title="Prepare stretched and sorted traces" aria-pressed="false">Stretch</button>
+              <button data-preset="fractured" title="Prepare displaced bands and fragments" aria-pressed="false">Fragment</button>
+              <button data-preset="encoded" title="Prepare digital patterns and reduced tones" aria-pressed="false">Encode</button>
+              <button data-preset="clear" title="Set all distortions to zero without changing the image" aria-pressed="false">Reset controls</button>
+            </div>
+          </div>
+
+          <div class="slider-group" id="signal-sliders"></div>
+
+          <div class="signal-meta">
+            <div id="signal-shape-sliders"></div>
+            <div class="seed-field">
+              <label for="signal-seed">Pattern seed</label>
+              <div class="input-row">
+                <input id="signal-seed" type="number" min="0" max="4294967295" step="1" value="7183" aria-describedby="seed-help">
+                <button class="button seed-button" id="new-pattern" title="Choose a new pattern seed" aria-label="Choose a new pattern seed">New seed</button>
+              </div>
+              <p class="field-help" id="seed-help">The same seed repeats the same pattern.</p>
+            </div>
+          </div>
+
+          <div class="panel-action">
+            <button class="button apply-button" id="apply" disabled>Apply pass <span aria-hidden="true">↗</span></button>
+            <p class="pending-note" id="signal-pending" role="status" aria-live="polite">Controls prepare the next pass.</p>
+            <p class="field-help">Each pass changes the current result. Apply again to build on it.</p>
+          </div>
+
+          <details class="control-guide">
+            <summary>About the controls</summary>
+            <dl id="control-guide-list"></dl>
+          </details>
+        </section>
+      </aside>
+    </main>
+
+    <footer class="page-footer">
+      <p>Images stay on your device.</p>
+    </footer>
+
+    <dialog id="resize-dialog" aria-labelledby="resize-title" aria-describedby="resize-description">
+      <form method="dialog">
+        <h2 id="resize-title">Use a smaller copy?</h2>
+        <p id="resize-description"></p>
+        <p class="field-help">Images can be up to 8192 pixels on either side and 16,777,216 pixels in total.</p>
+        <div class="resize-actions">
+          <button value="cancel" class="button" autofocus>Cancel</button>
+          <button value="resize" class="button button-dark">Use smaller copy</button>
+        </div>
+      </form>
+    </dialog>
+  </body>
+</html>
