@@ -1,4 +1,8 @@
-# Dreamcloak Foundations redesign
+# Week 9 presentations
+
+The browser version of **Peter_Yiran – Final Presentation Template** is in [peter-yiran-browser-slides](peter-yiran-browser-slides/README.md). Open [its HTML file](peter-yiran-browser-slides/index.html) to present all 16 slides. It uses the updated Foundations frame, proportional typography throughout, and separate disclosures for the original work and this redesign.
+
+## Dreamcloak Foundations redesign
 
 The redesigned deck is `Dreamcloak - Foundations Redesign.pptx`. The matching PDF provides a preview with the intended fonts embedded, independent of local font activation.
 

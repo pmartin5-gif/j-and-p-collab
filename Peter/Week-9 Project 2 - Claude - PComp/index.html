@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>dreamcloak — PComp midterm</title>
+<link rel="icon" href="data:,">
+<link rel="preload" href="fonts/archivo-variable.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="fonts/special-gothic-expanded-one.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="deck.css?v=1">
+</head>
+<body>
+
+<main class="viewer" id="viewer">
+<div class="stage" id="stage">
+
+<!-- 1 -->
+<section class="slide slide-title" aria-label="Title">
+  <h1 class="display-xl">dreamcloak</h1>
+  <p class="byline">peter martin</p>
+</section>
+
+<!-- 2 -->
+<section class="slide text">
+  <h2 class="title">feedback <span class="aside">(receive)</span></h2>
+  <div class="body">
+    <p>it was extremely meaningful to hear your feedback on the emotional experience.</p>
+    <p>i’d like to hear more on the experience of translating your feelings into pictures and how they can be better (i’m working on something).</p>
+  </div>
+</section>
+
+<!-- 3 -->
+<section class="slide text">
+  <h2 class="title">problem</h2>
+  <div class="body">
+    <p>i hope i can offer an additional means of expression for people that feel they have issues expressing their emotions.</p>
+    <p>surprisingly, this market seems to be underserved.</p>
+    <p>affective computing concerns itself with emotional interpretation and expression by computers.</p>
+    <p>the discourse seems centered around predicting or prescribing emotional states rather than providing a means to express them.</p>
+  </div>
+</section>
+
+<!-- 4 -->
+<section class="slide text">
+  <h2 class="title">community</h2>
+  <div class="body">
+    <p>one of the most glaring issues is that i haven’t done any testing with my ‘community.’</p>
+    <p>i worry that i don’t have something developed enough to test. but maybe once i have schematics drawn up i can do some outreach</p>
+  </div>
+</section>
+
+<!-- 5 -->
+<section class="slide text">
+  <h2 class="title">research</h2>
+  <div class="body">
+    <p class="muted">still in progress…</p>
+    <p>what i’ve uncovered is that a lot of the overlap between emotions and technology occurs in a field called ‘affective computing.’ it focuses on machines being able to interpret emotions and adopt them in their interactions with people.</p>
+    <p>but i’m not interested in interpretation - <em>only expression.</em></p>
+    <p>i have a lot more research to do.</p>
+  </div>
+</section>
+
+<!-- 6 -->
+<section class="slide text">
+  <h2 class="title">playtesting</h2>
+  <div class="body">
+    <p>biggest takeaway = <em>emotions are hard.</em></p>
+    <p>i need to make sure any research i do in the future helps create a caring and safe environment.</p>
+    <p>people seem to like having their feelings expressed in a visual format.</p>
+    <p>one person said that being able to represent their emotions visually was nice because it left less room for misinterpretation. this project is for that person.</p>
+  </div>
+</section>
+
+<!-- 7 -->
+<section class="slide slide-statement">
+  <h2 class="display-xl">live demo</h2>
+</section>
+
+<!-- 8 -->
+<section class="slide slide-figure">
+  <h2 class="title">future iterations <span class="aside">(kill me)</span></h2>
+  <figure>
+    <svg viewBox="0 0 1664 600" role="img" aria-labelledby="fi-desc">
+      <desc id="fi-desc">A cape shown from the front and back, lined with rows of LED strips. Beside it, a stone, then a plus sign, then a mobile phone.</desc>
+
+      <!-- cape, front -->
+      <g class="ink">
+        <path d="M190 70 C130 100 70 230 40 560 H460 C430 230 370 100 310 70"/>
+        <path d="M190 70 Q250 108 310 70 Q250 50 190 70"/>
+        <path d="M250 92 V560"/>
+        <path d="M232 98 h36"/><circle cx="228" cy="98" r="6"/><circle cx="272" cy="98" r="6"/>
+        <path d="M130 270 v80 M370 270 v80"/>
+      </g>
+      <g class="led">
+        <line x1="88" y1="230" x2="412" y2="230"/>
+        <line x1="66" y1="390" x2="434" y2="390"/>
+      </g>
+
+      <!-- cape, back -->
+      <g class="ink">
+        <path d="M680 70 C620 100 560 230 530 560 H950 C920 230 860 100 800 70"/>
+        <path d="M680 70 Q740 108 800 70 Q740 50 680 70"/>
+      </g>
+      <g class="led">
+        <line x1="598" y1="200" x2="882" y2="200"/>
+        <line x1="562" y1="340" x2="918" y2="340"/>
+        <line x1="548" y1="450" x2="932" y2="450"/>
+      </g>
+
+      <!-- stone -->
+      <g class="ink">
+        <ellipse cx="1130" cy="270" rx="100" ry="140"/>
+        <path d="M1062 190 C1100 230 1150 220 1196 250"/>
+        <path d="M1046 300 C1090 290 1120 330 1170 320 C1190 316 1205 330 1214 340"/>
+      </g>
+
+      <!-- plus -->
+      <g class="ink plus">
+        <path d="M1300 300 h64 M1332 268 v64"/>
+      </g>
+
+      <!-- phone -->
+      <g class="ink" transform="rotate(-14 1520 330)">
+        <rect x="1440" y="140" width="160" height="380" rx="56"/>
+        <rect x="1472" y="190" width="96" height="88" rx="8"/>
+        <circle cx="1484" cy="340" r="6"/><circle cx="1520" cy="340" r="6"/><circle cx="1556" cy="340" r="6"/>
+        <circle cx="1484" cy="378" r="6"/><circle cx="1520" cy="378" r="6"/><circle cx="1556" cy="378" r="6"/>
+        <circle cx="1484" cy="416" r="6"/><circle cx="1520" cy="416" r="6"/><circle cx="1556" cy="416" r="6"/>
+        <circle cx="1484" cy="454" r="6"/><circle cx="1520" cy="454" r="6"/><circle cx="1556" cy="454" r="6"/>
+      </g>
+    </svg>
+  </figure>
+</section>
+
+</div>
+</main>
+
+<nav class="controls" aria-label="Slides">
+  <button id="prev" aria-label="Previous slide">←</button>
+  <span id="counter" aria-live="polite"></span>
+  <button id="next" aria-label="Next slide">→</button>
+</nav>
+
+<script src="deck.js"></script>
+</body>
+</html>

@@ -1,0 +1,222 @@
+/*
+ * dreamcloak — PComp midterm deck
+ * Tokens from Figma "01 / Foundations" (node 33:78); rules from j-and-p-collab/brief.md.
+ * Slides are laid out on a 1920 × 1080 canvas and scaled to fit the window.
+ */
+
+@font-face {
+  font-family: "Archivo";
+  src: url("fonts/archivo-variable.ttf") format("truetype");
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Special Gothic Expanded One";
+  src: url("fonts/special-gothic-expanded-one.ttf") format("truetype");
+  font-display: swap;
+}
+
+:root {
+  --paper: #EEEBE4;
+  --ink: #1B1B1B;
+  --line: #C9C9C9;
+  --decoration: #F62DAE;      /* 3.2:1 on paper: large text (24px+) and graphics only */
+  --accent-display: #B30089;
+  --soft: #470063;
+  --ink-muted: #55524C;       /* added for secondary text, 6.9:1 */
+
+  --font-text: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Special Gothic Expanded One", "Archivo", "Helvetica Neue", Arial, sans-serif;
+
+  --margin: 128px;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, p, figure { margin: 0; }
+
+em { font-style: normal; color: var(--decoration); }
+
+:focus-visible { outline: 3px solid var(--accent-display); outline-offset: 3px; }
+
+/* ---------- Viewer ---------- */
+
+.viewer { position: fixed; inset: 0 0 56px 0; overflow: hidden; }
+
+.stage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1920px;
+  height: 1080px;
+  transform-origin: 0 0;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  padding: 120px var(--margin) 112px;
+  background: var(--paper);
+  font-size: 38px;
+  line-height: 54px;
+}
+
+.slide:not(.is-active) { visibility: hidden; }
+
+.controls {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  border-top: 1px solid var(--line);
+  background: var(--paper);
+  font-size: 15px;
+}
+
+.controls button {
+  width: 44px;
+  height: 40px;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.controls button:disabled { color: var(--line); cursor: default; }
+
+#counter { min-width: 64px; text-align: center; color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+
+/* ---------- Type ---------- */
+
+.display-xl {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 200px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 96px;
+  line-height: 1.05;
+  white-space: nowrap;
+}
+
+/* A small parenthetical set beside a title, as in the source */
+.aside {
+  font-family: var(--font-text);
+  font-size: 40px;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--ink-muted);
+  margin-left: 16px;
+}
+
+.muted { color: var(--ink-muted); }
+
+/* ---------- Title + statement ---------- */
+
+.slide-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.slide-title .byline {
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+  font-size: 48px;
+  line-height: 56px;
+  font-weight: 500;
+}
+
+.slide-statement {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- Text slides: title top-left, text bottom-right ---------- */
+
+.text {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  column-gap: 128px;
+}
+
+.text .title { grid-column: 1 / -1; }
+
+.text .body {
+  grid-column: 2;
+  align-self: end;
+  padding-top: 40px;
+  border-top: 1px solid var(--line);
+}
+
+.text .body p + p { margin-top: 28px; }
+
+/* ---------- Figure slide ---------- */
+
+.slide-figure {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.slide-figure svg { display: block; width: 100%; height: auto; }
+
+.slide-figure .ink path,
+.slide-figure .ink ellipse,
+.slide-figure .ink rect,
+.slide-figure .ink circle {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.slide-figure .ink circle[r="6"] { fill: var(--ink); stroke: none; }
+.slide-figure .plus path { stroke-width: 6; }
+
+.slide-figure .led line {
+  stroke: var(--decoration);
+  stroke-width: 12;
+  stroke-dasharray: 44 10;
+}
+
+/* ---------- Print: one slide per page ---------- */
+
+@page { size: 1920px 1080px; margin: 0; }
+
+@media print {
+  .controls { display: none; }
+  .viewer { position: static; overflow: visible; }
+  .stage { position: static; transform: none !important; width: auto; height: auto; }
+  .slide { position: relative; width: 1920px; height: 1080px; visibility: visible !important; break-after: page; }
+}
