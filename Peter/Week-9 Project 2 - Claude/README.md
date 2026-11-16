@@ -30,10 +30,22 @@ The text matches the source PDF word for word. Only layout, type and color chang
 
 ## Design
 
+Revised for the updated brief, which asks for loud color on top-level title slides, artful composition and flow, and subtle decorative elements.
+
 - **Fonts:** Special Gothic Expanded One for titles and persona names; Archivo for everything else.
-- **Colors:** paper background and ink text. Pink `#F62DAE` appears only at display size and only on the experience/sentiment thread: "Wins on Experience", "Clear advantage is sentimental", "Maximize Experience", and the farmer's-market-only notes in the matrix. The job-story answers use `#B30089`, which is legible at body size.
+- **Title slide:** a full pink (`#F62DAE`) field with ink type (4.5:1).
+- **Elsewhere, pink appears only at display size and only on the experience/sentiment thread:** "Wins on Experience", "Clear advantage is sentimental", "Maximize Experience", and the farmer's-market-only notes in the matrix. The persona quotes have a pink rule, and the job-story answers use `#B30089`, which is legible at body size.
+- **Composition and flow:**
+  - The methodology and future-research steps sit on a connected timeline.
+  - The research statement is set larger than the other three goals.
+  - The insight columns step down toward the third insight.
+  - On slide 8, the decision path forks into its two columns.
+- **Decoration, all in ink or pink:**
+  - a leaf sprig (title slide, last slide)
+  - a dot pattern (title slide, recommendation slides)
+  - diamonds as timeline nodes, bullets, the fork junction and the recommendations divider
 - **Added color:** `--ink-muted` (#55524C) for secondary text. It isn't in the Figma frame.
-- **Numbering:** the "01–05" labels stay small and muted rather than prominent.
+- **Numbering:** the "01–05" labels stay small and muted.
 
 ## Files
 

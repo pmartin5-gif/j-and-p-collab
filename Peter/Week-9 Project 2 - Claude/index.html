@@ -7,101 +7,95 @@
 <link rel="icon" href="data:,">
 <link rel="preload" href="fonts/archivo-variable.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="preload" href="fonts/special-gothic-expanded-one.ttf" as="font" type="font/ttf" crossorigin>
-<link rel="stylesheet" href="deck.css?v=6">
+<link rel="stylesheet" href="deck.css?v=22">
 </head>
 <body>
+
+<!-- Shared ornament: a leaf sprig used as a flourish -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="sprig" viewBox="0 0 160 48">
+    <path class="stem" d="M4 30 C40 18 84 40 156 22"/>
+    <path class="leaf" d="M34 24 C38 10 52 6 60 8 C56 18 46 26 34 24 Z"/>
+    <path class="leaf" d="M62 30 C70 42 86 44 92 40 C86 32 74 28 62 30 Z"/>
+    <path class="leaf" d="M96 30 C100 16 114 10 122 12 C118 22 108 30 96 30 Z"/>
+    <path class="leaf" d="M124 26 C132 36 146 38 152 34 C146 26 136 22 124 26 Z"/>
+  </symbol>
+</svg>
 
 <main class="viewer" id="viewer">
 <div class="stage" id="stage">
 
-<!-- 1 -->
+<!-- 1 · Title -->
 <section class="slide slide-title" aria-label="Title">
+  <div class="dots" aria-hidden="true"></div>
   <h1 class="display-xl">Farmers Markets</h1>
   <p class="subtitle">Research Presentation</p>
-  <p class="authors"><span>Yiran</span><span>Peter</span></p>
+  <p class="authors"><span>Yiran</span><svg class="sprig" aria-hidden="true"><use href="#sprig"/></svg><span>Peter</span></p>
 </section>
 
-<!-- 2 -->
-<section class="slide">
+<!-- 2 · Background -->
+<section class="slide s-goals">
   <h2 class="title">Background &amp; Research Goals</h2>
-  <div class="cols cols-4">
-    <div class="col">
-      <p class="num">01</p>
-      <h3>What it’s about…</h3>
-      <p>Exploring what draws people to farmers markets, starting from Union Square.</p>
+  <div class="goals">
+    <div class="goals-side">
+      <div class="item">
+        <p class="num">01</p>
+        <h3>What it’s about…</h3>
+        <p>Exploring what draws people to farmers markets, starting from Union Square.</p>
+      </div>
+      <div class="item">
+        <p class="num">02</p>
+        <h3>What we focus on…</h3>
+        <p>Why they go.<br>What affects the visit.<br>How they feel.</p>
+      </div>
     </div>
-    <div class="col">
-      <p class="num">02</p>
-      <h3>What we focus on…</h3>
-      <p>Why they go.</p>
-      <p>What affects the visit.</p>
-      <p>How they feel.</p>
-    </div>
-    <div class="col">
-      <p class="num">03</p>
-      <h3>Research statement</h3>
-      <p>I’m going to research what motivates customers to visit farmers markets</p>
-      <p>So that i can improve their shopping experience.</p>
-    </div>
-    <div class="col">
-      <p class="num">04</p>
-      <h3>Target Users</h3>
-      <p>People who shop for food at farmers markets.</p>
+    <div class="goals-main">
+      <div class="item statement">
+        <p class="num">03</p>
+        <h3>Research statement</h3>
+        <p class="big">I’m going to research what motivates customers to visit farmers markets</p>
+        <p class="big">So that i can improve their shopping experience.</p>
+      </div>
+      <div class="item">
+        <p class="num">04</p>
+        <h3>Target Users</h3>
+        <p>People who shop for food at farmers markets.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- 3 -->
+<!-- 3 · Methodology -->
 <section class="slide">
   <h2 class="title">Research methodology</h2>
-  <div class="cols cols-5">
-    <div class="col">
-      <p class="num">01</p>
-      <h3>Desk Research:</h3>
-      <p>Reviewed existing studies and competitors (supermarkets, online shopping, etc).</p>
-    </div>
-    <div class="col">
-      <p class="num">02</p>
-      <h3>AEIOU Observation:</h3>
-      <p>Observed the market’s selling environment.</p>
-    </div>
-    <div class="col">
-      <p class="num">03</p>
-      <h3>Quadrant Matrix:</h3>
-      <p>Synthesized findings into our core hunt statement.</p>
-    </div>
-    <div class="col">
-      <p class="num">04</p>
-      <h3>User Interviews:</h3>
-      <p>Interviewed participants using a team-built guide.</p>
-    </div>
-    <div class="col">
-      <p class="num">05</p>
-      <h3>Color Coding &amp; Concept Map:</h3>
-      <p>Identified key insights and patterns.</p>
-    </div>
-  </div>
+  <ol class="timeline t5">
+    <li><p class="num">01</p><h3>Desk Research:</h3><p>Reviewed existing studies and competitors (supermarkets, online shopping, etc).</p></li>
+    <li><p class="num">02</p><h3>AEIOU Observation:</h3><p>Observed the market’s selling environment.</p></li>
+    <li><p class="num">03</p><h3>Quadrant Matrix:</h3><p>Synthesized findings into our core hunt statement.</p></li>
+    <li><p class="num">04</p><h3>User Interviews:</h3><p>Interviewed participants using a team-built guide.</p></li>
+    <li><p class="num">05</p><h3>Color Coding &amp; Concept Map:</h3><p>Identified key insights and patterns.</p></li>
+  </ol>
 </section>
 
-<!-- 4 -->
+<!-- 4 · Snapshots -->
 <section class="slide">
   <h2 class="title">User snapshots</h2>
-  <div class="cols cols-3 personas">
-    <div class="col">
+  <div class="personas">
+    <div class="persona-card">
       <h3 class="persona-name">China Cook</h3>
       <p class="q">What motivates them?</p>
       <p>Convenience – closeness to home.</p>
       <p class="q">How could their experience be improved?</p>
       <p>Protection from the elements (heat/rain/weather)</p>
     </div>
-    <div class="col">
+    <div class="persona-card">
       <h3 class="persona-name">Iowa Transplant</h3>
       <p class="q">What motivates them?</p>
       <p>Nostalgia for farmers markets from home.</p>
       <p class="q">How could their experience be improved?</p>
       <p>A more organized flow of foot traffic.</p>
     </div>
-    <div class="col">
+    <div class="persona-card">
       <h3 class="persona-name">Ingredient Hunter</h3>
       <p class="q">What motivates them?</p>
       <p>Finding exotic ingredients unavailable in supermarkets.</p>
@@ -111,12 +105,12 @@
   </div>
 </section>
 
-<!-- 5 -->
+<!-- 5–7 · Personas -->
 <section class="slide persona">
   <h2 class="display-l">China Cook</h2>
   <blockquote>“I don’t like to buy too much fresh food all at once so I don’t put it in the fridge too long. It helps keep the ingredients fresh.”</blockquote>
   <div class="persona-body">
-    <ul>
+    <ul class="bullets">
       <li>China cook chooses the farmer’s market because it’s convenient to her house.</li>
       <li>She visits 3x per week to get fresh food that won’t wilt in the fridge.</li>
       <li>The market is closer to her house than the supermarket, though she’ll make the trek to the latter for a wider selection of packaged goods.</li>
@@ -129,12 +123,11 @@
   </div>
 </section>
 
-<!-- 6 -->
 <section class="slide persona">
   <h2 class="display-l">Iowa Transplant</h2>
   <blockquote>“Farmers markets remind me of home. They feel very familiar.”</blockquote>
   <div class="persona-body">
-    <ul>
+    <ul class="bullets">
       <li>Iowa Transplant visits supermarkets with a grocery list, but goes to farmers markets to browse and see what looks good at the time.</li>
       <li>Part of the appeal is the experience – farmers markets remind her of home and there’s a sense of exploration.</li>
       <li>Vendors for thrifted clothes and vintage jewelry enhance the experience.</li>
@@ -147,7 +140,6 @@
   </div>
 </section>
 
-<!-- 7 -->
 <section class="slide persona">
   <h2 class="display-l">Ingredient Hunter</h2>
   <blockquote>“As a vegetarian, farmers markets offer more variety than the grocery store. But finding ingredients or vendors can be unpredictable.”</blockquote>
@@ -165,7 +157,7 @@
   </div>
 </section>
 
-<!-- 8 -->
+<!-- 8 · Decision pathing -->
 <section class="slide split">
   <div class="split-text">
     <p class="kicker">Visual learnings</p>
@@ -180,41 +172,48 @@
     </ul>
   </div>
   <figure class="fork" aria-label="Decision path: interview notes sorted toward farmers market or supermarket">
-    <div class="fork-side">
-      <p class="fork-head">Farmers Market</p>
-      <ul class="notes">
-        <li>being outdoors, a sense of nostalgia, and access to seasonal products.</li>
-        <li>I feel comfortable shopping there.</li>
-        <li>Supporting local farmers</li>
-        <li>I go to the farmer’s market mostly because it’s close.</li>
-        <li>Walking out of the market with something is her favorite part and what she looks forward to</li>
-        <li>vendors are available to talk with customers.</li>
-      </ul>
-    </div>
-    <div class="fork-side">
-      <p class="fork-head">Supermarket</p>
-      <p class="fork-group">Farmers markets are bad</p>
-      <ul class="notes">
-        <li>Their main frustration is the lack of clear vendor information and consistency.</li>
-        <li>bad weather can make the trip less comfortable.</li>
-        <li>Hot, sweaty, crowded, bumping shoulders with people trying to get around</li>
-        <li>It can be difficult to move around the stalls when it’s crowded</li>
-      </ul>
-      <p class="fork-group">Supermarkets are good</p>
-      <ul class="notes">
-        <li>I mainly buy groceries from Trader Joe’s</li>
-        <li>There’s more options when I’m looking for a certain brand for packaged goods.</li>
-      </ul>
+    <svg class="fork-lines" viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M500 0 V36 C500 84 250 64 250 120"/>
+      <path d="M500 36 C500 84 750 64 750 120"/>
+    </svg>
+    <span class="fork-node" aria-hidden="true"></span>
+    <div class="fork-cols">
+      <div class="fork-side">
+        <p class="fork-head">Farmers Market</p>
+        <ul class="notes">
+          <li>being outdoors, a sense of nostalgia, and access to seasonal products.</li>
+          <li>I feel comfortable shopping there.</li>
+          <li>Supporting local farmers</li>
+          <li>I go to the farmer’s market mostly because it’s close.</li>
+          <li>Walking out of the market with something is her favorite part and what she looks forward to</li>
+          <li>vendors are available to talk with customers.</li>
+        </ul>
+      </div>
+      <div class="fork-side">
+        <p class="fork-head">Supermarket</p>
+        <p class="fork-group">Farmers markets are bad</p>
+        <ul class="notes">
+          <li>Their main frustration is the lack of clear vendor information and consistency.</li>
+          <li>bad weather can make the trip less comfortable.</li>
+          <li>Hot, sweaty, crowded, bumping shoulders with people trying to get around</li>
+          <li>It can be difficult to move around the stalls when it’s crowded</li>
+        </ul>
+        <p class="fork-group">Supermarkets are good</p>
+        <ul class="notes">
+          <li>I mainly buy groceries from Trader Joe’s</li>
+          <li>There’s more options when I’m looking for a certain brand for packaged goods.</li>
+        </ul>
+      </div>
     </div>
   </figure>
 </section>
 
-<!-- 9 -->
+<!-- 9 · Wins on Experience -->
 <section class="slide split">
   <div class="split-text">
     <p class="kicker">Visual learnings</p>
     <h2 class="title">Wins on <em>Experience</em></h2>
-    <ul>
+    <ul class="bullets">
       <li>The reasons that people choose farmer’s markets over supermarkets are varied and can have either a pragmatic or experiential basis.</li>
       <li>Supermarkets can compete with farmer’s markets on pragmatic reasons, like pricing and variety.</li>
       <li>However, interviewees frequently cited experiential motivation to choose farmer’s markets, which cannot be matched by supermarkets.</li>
@@ -268,21 +267,21 @@
   </figure>
 </section>
 
-<!-- 10 -->
+<!-- 10 · Insights -->
 <section class="slide">
   <h2 class="title">Insights</h2>
-  <div class="cols cols-3">
-    <div class="col">
+  <div class="steps">
+    <div class="step">
       <p class="num">01</p>
       <h3>Common Intentions</h3>
       <p>For most people, the ‘job to be done’ is to find ingredients to cook at home.</p>
     </div>
-    <div class="col">
+    <div class="step">
       <p class="num">02</p>
       <h3>Stiff competition</h3>
       <p>The direct alternative to a farmer’s market is a supermarket. The supermarket clearly outcompetes farmer’s market on the availability of packaged goods, consistency, and shelter from the weather. For other practical concerns like variety, quality, price, or convenience, any advantage over farmer’s markets is conditional.</p>
     </div>
-    <div class="col">
+    <div class="step">
       <p class="num">03</p>
       <h3>Clear advantage is <em>sentimental</em></h3>
       <p>While people frequent farmer’s markets for pragmatic reasons, they also frequently cited experiential or sentimental reasons – nostalgia, comfort, community, and supporting local farmers. Alternatives like supermarkets don’t compete with farmers markets on these criteria.</p>
@@ -290,17 +289,18 @@
   </div>
 </section>
 
-<!-- 11 -->
-<section class="slide">
+<!-- 11 · Recommendations -->
+<section class="slide s-recs">
   <h2 class="title">Recommendations</h2>
-  <div class="cols cols-2">
-    <div class="col">
+  <div class="halves">
+    <div class="half">
       <p class="num">01</p>
       <h3 class="h-large">Mitigate Practical Issues</h3>
       <p>Farmers markets are sometimes out-competed by alternatives in practical areas.</p>
       <p>There may be adjustments that can mitigate some of these issues to make farmers markets a more dependable, compelling option.</p>
     </div>
-    <div class="col">
+    <div class="divider" aria-hidden="true"><span></span></div>
+    <div class="half">
       <p class="num">02</p>
       <h3 class="h-large">Maximize <em>Experience</em></h3>
       <p>However, not all buying decisions are practical.</p>
@@ -310,75 +310,68 @@
   </div>
 </section>
 
-<!-- 12 -->
-<section class="slide">
+<!-- 12 · Mitigate -->
+<section class="slide s-icons">
+  <div class="dots" aria-hidden="true"></div>
   <p class="kicker">Recommendations</p>
   <h2 class="title">Mitigate Practical Issues</h2>
-  <div class="cols cols-4 recs">
-    <div class="col">
+  <div class="recs">
+    <div class="rec">
       <svg class="icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M15 21a9 9 0 0 1 18 0"/><path d="M13 21h22l-11 22z"/><path d="M18 21l7 9M24 21l5 7"/></svg>
       <p>Offer vendors electrical access so they can serve ice cream on hot days.</p>
     </div>
-    <div class="col">
+    <div class="rec">
       <svg class="icon" viewBox="0 0 48 48" aria-hidden="true"><circle cx="10" cy="10" r="4"/><circle cx="38" cy="38" r="4"/><path d="M14 10h16a6 6 0 0 1 0 12H18a6 6 0 0 0 0 12h16"/></svg>
       <p>Establish a ‘flow’ of pedestrian traffic.</p>
     </div>
-    <div class="col">
+    <div class="rec">
       <svg class="icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 18l4-10h24l4 10"/><path d="M8 18a4 4 0 0 0 8 0 4 4 0 0 0 8 0 4 4 0 0 0 8 0 4 4 0 0 0 8 0"/><path d="M11 22v18h26V22"/><path d="M20 40V30h8v10"/></svg>
       <p>Show which vendors are present and what’s available.</p>
     </div>
-    <div class="col">
+    <div class="rec">
       <svg class="icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M14 30a8 8 0 0 1 0-16 11 11 0 0 1 21 3 6.5 6.5 0 0 1-1 13z"/><path d="M17 36l-2 5M25 36l-2 5M33 36l-2 5"/></svg>
       <p>Offer ponchos or umbrellas during the rain.</p>
     </div>
   </div>
 </section>
 
-<!-- 13 -->
-<section class="slide">
+<!-- 13 · Maximize -->
+<section class="slide s-icons">
+  <div class="dots" aria-hidden="true"></div>
   <p class="kicker">Recommendations</p>
   <h2 class="title">Maximize <em>Experience</em></h2>
-  <div class="cols cols-4 recs">
-    <div class="col">
+  <div class="recs">
+    <div class="rec">
       <svg class="icon" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="22" r="4"/><path d="M14 30c3-3 6-4 10-4s7 1 10 4"/><path d="M24 26v14"/><circle cx="9" cy="14" r="1.6"/><circle cx="15" cy="8" r="1.6"/><circle cx="24" cy="6" r="1.6"/><circle cx="33" cy="8" r="1.6"/><circle cx="39" cy="14" r="1.6"/></svg>
       <p>Provide more background info on vendors and their farms.</p>
     </div>
-    <div class="col">
+    <div class="rec">
       <svg class="icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M12 40L36 10"/><path d="M27 21c-4 0-7-3-7-7 4 0 7 3 7 7zM27 21c0-4 3-7 7-7 0 4-3 7-7 7z"/><path d="M21 28c-4 0-7-3-7-7 4 0 7 3 7 7zM21 28c0-4 3-7 7-7 0 4-3 7-7 7z"/><path d="M33 13c0-3 1-5 3-6"/></svg>
       <p>In-person training on how to choose the best produce.</p>
     </div>
-    <div class="col">
+    <div class="rec">
       <svg class="icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 16L24 6l16 10z"/><path d="M24 16v24"/><path d="M14 28h20"/><path d="M8 24v16M8 32h6v8M40 24v16M40 32h-6v8"/></svg>
       <p>Public seating to create a ‘third space.’</p>
     </div>
-    <div class="col">
+    <div class="rec">
       <svg class="icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M10 12h10l-1 9a4 4 0 0 1-8 0z"/><path d="M15 25v13M11 38h8"/><path d="M31 6h6v6l3 5v23H28V17l3-5z"/><path d="M28 24h12"/></svg>
       <p>Serve booze.</p>
     </div>
   </div>
 </section>
 
-<!-- 14 -->
+<!-- 14 · Future research -->
 <section class="slide">
   <h2 class="title">For future research…</h2>
-  <div class="cols cols-3">
-    <div class="col">
-      <p class="num">01</p>
-      <p class="lead">2nd round of research focused squarely on finding commonalities around sentimentality &amp; experience.</p>
-    </div>
-    <div class="col">
-      <p class="num">02</p>
-      <p class="lead">More intercept interviews before, during, and after a trip to the market.</p>
-    </div>
-    <div class="col">
-      <p class="num">03</p>
-      <p class="lead">Have customers rate proposed solutions.</p>
-    </div>
-  </div>
+  <ol class="timeline t3">
+    <li><p class="num">01</p><p class="lead">2nd round of research focused squarely on finding commonalities around sentimentality &amp; experience.</p></li>
+    <li><p class="num">02</p><p class="lead">More intercept interviews before, during, and after a trip to the market.</p></li>
+    <li><p class="num">03</p><p class="lead">Have customers rate proposed solutions.</p></li>
+  </ol>
 </section>
 
-<!-- 15 -->
-<section class="slide">
+<!-- 15 · AI disclosure -->
+<section class="slide s-ai">
   <h2 class="title">AI Disclosure Statement</h2>
   <dl class="disclosure">
     <div><dt>How much did we use AI for <strong>research</strong>?</dt><dd>A little</dd></div>
@@ -386,6 +379,7 @@
     <div><dt>How much did we use AI for <strong>synthesis</strong>?</dt><dd>0%</dd></div>
     <div><dt>How much did we use AI for <strong>our presentation</strong>?</dt><dd>0%</dd></div>
   </dl>
+  <svg class="sprig end" aria-hidden="true"><use href="#sprig"/></svg>
 </section>
 
 </div>
