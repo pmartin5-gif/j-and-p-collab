@@ -1,0 +1,124 @@
+/* Shared by the deck and the website. Tokens and reusable parts only; no layout. */
+
+@font-face {
+  font-family: "Archivo";
+  src: url("fonts/archivo-variable.ttf") format("truetype");
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Special Gothic Expanded One";
+  src: url("fonts/special-gothic-expanded-one.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  /* Color: values from design-system.md */
+  --paper: #eeebe4;
+  --ink: #1b1b1b;
+  --ink-muted: #55524c; /* proposed; not in the Foundations frame */
+  --line: #c9c9c9;
+  --decoration: #f62dae;
+  --accent-display: #b30089;
+  --soft: #470063;
+
+  /* Space */
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-48: 48px;
+  --space-64: 64px;
+
+  --font-body: "Archivo", sans-serif;
+  --font-display: "Special Gothic Expanded One", "Archivo", sans-serif;
+
+  /* Type scale, web. The deck multiplies these by --scale (2). */
+  --scale: 1;
+  --t-body: calc(15px * var(--scale));
+  --t-body-lh: calc(24px * var(--scale));
+  --t-support: calc(13px * var(--scale));
+  --t-support-lh: calc(20.8px * var(--scale));
+  --t-label: calc(11px * var(--scale));
+  --t-label-lh: calc(17.6px * var(--scale));
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--t-body);
+  line-height: var(--t-body-lh);
+}
+
+/* Reusable: display title (Special Gothic Expanded One) */
+.title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+/* Reusable: small label for orientation only */
+.label {
+  margin: 0;
+  font-size: var(--t-label);
+  line-height: var(--t-label-lh);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.support {
+  font-size: var(--t-support);
+  line-height: var(--t-support-lh);
+  color: var(--ink-muted);
+}
+
+/* Reusable: emphasis word. Display accent, bold. At most one or two per screen. */
+.em {
+  color: var(--accent-display);
+  font-weight: 700;
+}
+/* Only for very large display type; Action is 2.99:1 on Canvas. */
+.em--display {
+  color: var(--decoration);
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+a:focus-visible,
+button:focus-visible {
+  outline: calc(3px * var(--scale)) solid var(--accent-display);
+  outline-offset: calc(3px * var(--scale));
+}
+
+.rule {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
