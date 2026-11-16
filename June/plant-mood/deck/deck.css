@@ -1,0 +1,328 @@
+/* Deck: 1920 x 1080. Same tokens as the website; type scale is the web scale x 2. */
+
+:root {
+  --scale: 2;
+  --margin-x: calc(var(--space-64) * 2);
+  --margin-y: calc(var(--space-48) * 2);
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  background: var(--ink);
+}
+
+#stage {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 1920px;
+  height: 1080px;
+  transform-origin: center;
+  transform: translate(-50%, -50%) scale(var(--fit, 1));
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: none;
+  padding: var(--margin-y) var(--margin-x);
+  background: var(--paper);
+  color: var(--ink);
+  overflow: hidden;
+}
+.slide.is-active {
+  display: block;
+}
+
+.slide h3 {
+  margin: 0;
+  font-size: calc(22px * var(--scale));
+  line-height: calc(28px * var(--scale));
+  font-weight: 700;
+}
+.slide :where(p) {
+  margin: 0;
+}
+
+.title--slide {
+  font-size: 56px;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+.title--cover {
+  font-size: 200px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.block > * + * {
+  margin-top: var(--space-16);
+}
+.block .label {
+  margin-bottom: var(--space-8);
+}
+.lead {
+  font-size: calc(18px * var(--scale));
+  line-height: calc(28px * var(--scale));
+}
+
+/* 1 Cover: title top-left, supporting text bottom-right */
+.slide--cover .title--cover {
+  position: absolute;
+  left: var(--margin-x);
+  top: calc(var(--margin-y) + var(--space-64));
+}
+.cover-meta {
+  position: absolute;
+  right: var(--margin-x);
+  bottom: var(--margin-y);
+  width: 1100px;
+  text-align: right;
+}
+.cover-sub {
+  font-size: calc(18px * var(--scale));
+  line-height: calc(28px * var(--scale));
+}
+.cover-name {
+  margin-top: var(--space-32);
+  font-weight: 700;
+}
+
+/* 2 Community and problem */
+.cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: var(--space-64);
+  margin-top: var(--space-64);
+}
+.slide--problem .col .rule {
+  margin: var(--space-32) 0;
+}
+blockquote {
+  margin: var(--space-24) 0 0;
+  padding-left: var(--space-24);
+  border-left: 2px solid var(--line);
+}
+blockquote footer {
+  margin-top: var(--space-8);
+  font-size: var(--t-support);
+  line-height: var(--t-support-lh);
+  color: var(--ink-muted);
+}
+.col--images {
+  display: grid;
+  row-gap: var(--space-24);
+  align-content: start;
+}
+.col--images img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+.img-wide {
+  aspect-ratio: 1448 / 640;
+}
+.img-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: var(--space-24);
+}
+.img-pair img {
+  aspect-ratio: 1.135;
+}
+.source {
+  position: absolute;
+  left: var(--margin-x);
+  right: var(--margin-x);
+  bottom: var(--margin-y);
+}
+.source .label,
+.slide .support .label {
+  margin-right: var(--space-12);
+  display: inline;
+}
+
+/* 3 Research */
+.research-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: var(--space-64);
+  margin-top: var(--space-64);
+}
+.market-items {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: var(--space-32);
+  margin: var(--space-24) 0;
+}
+.market figure {
+  margin: 0;
+}
+.market img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+.market figcaption {
+  margin-top: var(--space-16);
+}
+.market figcaption p {
+  margin-top: var(--space-4);
+}
+.findings .rule {
+  margin: var(--space-48) 0;
+}
+
+/* 4 and 7 Numbered lists */
+.steps {
+  list-style: none;
+  margin: var(--space-64) 0 0;
+  padding: 0;
+  counter-reset: step;
+  display: grid;
+  row-gap: var(--space-48);
+  max-width: 1100px;
+}
+.steps li {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: var(--space-64) 1fr;
+  column-gap: var(--space-24);
+}
+.steps li::before {
+  content: counter(step) ".";
+  grid-row: 1 / span 2;
+  font-size: calc(22px * var(--scale));
+  line-height: calc(28px * var(--scale));
+  font-weight: 700;
+  color: var(--ink-muted);
+}
+.steps li p {
+  margin-top: var(--space-4);
+}
+.slide--feedback .closing {
+  position: absolute;
+  right: var(--margin-x);
+  bottom: var(--margin-y);
+  max-width: 760px;
+  text-align: right;
+}
+
+/* 5 Table */
+table {
+  width: 100%;
+  margin-top: var(--space-48);
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: var(--t-support);
+  line-height: var(--t-support-lh);
+}
+col:first-child {
+  width: 24%;
+}
+th,
+td {
+  text-align: left;
+  vertical-align: top;
+  padding: var(--space-16) var(--space-24) var(--space-16) 0;
+  border-bottom: 1px solid var(--line);
+  font-weight: 400;
+}
+thead th {
+  font-size: var(--t-label);
+  line-height: var(--t-label-lh);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  padding-top: 0;
+}
+tbody th {
+  font-weight: 700;
+}
+td ul {
+  margin: 0;
+  padding-left: var(--space-24);
+}
+td p + p,
+td li + li {
+  margin-top: var(--space-8);
+}
+
+/* 6 Demo */
+.demo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: var(--space-64);
+  margin-top: var(--space-64);
+}
+.demo-text > * + * {
+  margin-top: var(--space-32);
+}
+.states {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-16) var(--space-32);
+  counter-reset: s;
+  font-weight: 700;
+}
+.states li {
+  counter-increment: s;
+}
+.states li::before {
+  content: counter(s) ". ";
+  color: var(--ink-muted);
+}
+.demo-videos {
+  display: grid;
+  row-gap: var(--space-24);
+  width: 640px;
+  justify-self: end;
+}
+.demo-videos a {
+  display: block;
+}
+.demo-videos img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+/* 7 Four items in two columns */
+.steps--four {
+  grid-template-columns: 1fr 1fr;
+  column-gap: var(--space-64);
+  max-width: none;
+  row-gap: var(--space-64);
+}
+
+@page {
+  size: 1920px 1080px;
+  margin: 0;
+}
+@media print {
+  html,
+  body {
+    height: auto;
+    overflow: visible;
+    background: none;
+  }
+  #stage {
+    position: static;
+    transform: none;
+  }
+  .slide {
+    display: block;
+    position: relative;
+    width: 1920px;
+    height: 1080px;
+    break-after: page;
+  }
+}
